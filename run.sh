@@ -1,5 +1,6 @@
 #!/bin/bash
-PROJECT_PATH=${HOME}/projects
+PROJECT_PATH=${HOME}/Documentos/FPGA/Projects
+
 docker run -it --rm \
   --net host \
   -e LOCAL_UID=$(id -u ${USER}) \
@@ -10,10 +11,10 @@ docker run -it --rm \
   -e "QT_X11_NO_MITSHM=1" \
   -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
   -v ${HOME}/.Xauthority:${HOME}/.Xauthority:rw \
-  -v ${PROJECT_PATH}:${HOME}/projects:rw \
+  -v ${PROJECT_PATH}:${HOME}/Projects:rw \
   -v /dev/bus/usb:/dev/bus/usb:rw \
   -v /sys:/sys:ro \
   --device /dev/dri \
   --privileged \
   -w ${HOME} \
-  vivado:2022.1
+  vivado:2025.1-1
