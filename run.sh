@@ -17,4 +17,4 @@ docker run -it --rm \
   --device /dev/dri \
   --privileged \
   -w ${HOME} \
-  vivado:2025.1-1
+  vivado:2025.1

@@ -115,6 +115,16 @@ RUN cd ${XLNX_INSTALL_LOCATION}/tmp/ && \
 # Cleanup Install
 RUN rm -rf ${XLNX_INSTALL_LOCATION}/tmp && \
 	rm -rf /root/.Xilinx/wi_authentication_key 
+	
+# Remove default ubuntu user that causes conflicts with the entrypoint
+RUN deluser --remove-home ubuntu
+
+#Fix not opening Vitis under Ubuntu 24.04 latest verions
+RUN cd ${XLNX_INSTALL_LOCATION}/${XLNX_VIVADO_VERSION}/Vitis/lib/lnx64.o/Ubuntu && \
+	mv libstdc++.so libstdc++.so.bkup && \
+	mv libstdc++.so.6 libstdc++.so.6.bkup && \
+	ln -s /lib/x86_64-linux-gnu/libstdc++.so.6 libstdc++.so.6 && \
+	ln -s /lib/x86_64-linux-gnu/libstdc++.so.6 libstdc++.so
 
 # Set up the work environment
 RUN mkdir ${HOME}/Projects
