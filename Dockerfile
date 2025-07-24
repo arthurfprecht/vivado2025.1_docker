@@ -35,8 +35,10 @@ RUN wget http://security.ubuntu.com/ubuntu/pool/universe/n/ncurses/libtinfo5_6.3
 	sudo apt install ./libtinfo5_6.3-2ubuntu0.1_amd64.deb
 
 # Requirements for Vitis
+# rlwrap to fix not opening XSDB server under Ubuntu 22.04 or newer verions to fix a bug in XSDB
 RUN apt-get install -y -qq \
-	default-jre
+	default-jre \
+	rlwrap
 
 # Requirements for DocNav
 # RUN apt-get install -y -qq \
@@ -125,9 +127,15 @@ RUN cd ${XLNX_INSTALL_LOCATION}/${XLNX_VIVADO_VERSION}/Vitis/lib/lnx64.o/Ubuntu 
 	mv libstdc++.so.6 libstdc++.so.6.bkup && \
 	ln -s /lib/x86_64-linux-gnu/libstdc++.so.6 libstdc++.so.6 && \
 	ln -s /lib/x86_64-linux-gnu/libstdc++.so.6 libstdc++.so
+	
+#Fix not opening XSDB server due to buggy rlwrap under Ubuntu 22.04 or newer verions
+RUN cd ${XLNX_INSTALL_LOCATION}/${XLNX_VIVADO_VERSION}/Vitis/bin/unwrapped/lnx64.o && \
+	mv rlwrap rlwrap.old && \
+	ln -s /usr/bin/rlwrap rlwrap
 
 # Set up the work environment
 RUN mkdir ${HOME}/Projects
+RUN mkdir ${HOME}/Workspaces
 
 # Set up the entrypoint
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
