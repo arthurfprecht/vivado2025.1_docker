@@ -83,7 +83,10 @@ RUN apt-get install -y -qq \
 	libegl1-mesa-dev \
 	libsdl1.2-dev \
 	pylint \
-	cpio
+	cpio \
+	rsync \
+	bc
+
 
 RUN apt-get autoclean && \
 	apt-get autoremove && \

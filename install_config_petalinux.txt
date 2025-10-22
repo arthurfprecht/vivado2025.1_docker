@@ -1,5 +1,5 @@
-#### PetaLinux arm and microblaze Install Configuration ####
-Edition=PetaLinux arm and microblaze
+#### PetaLinux arm Install Configuration ####
+Edition=PetaLinux arm
 
 Product=PetaLinux
 
