@@ -1,5 +1,5 @@
-#### PetaLinux arm Install Configuration ####
-Edition=PetaLinux arm
+#### PetaLinux All platforms Install Configuration ####
+Edition=PetaLinux All platforms
 
 Product=PetaLinux
 

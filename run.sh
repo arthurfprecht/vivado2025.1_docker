@@ -21,6 +21,7 @@ docker run -it --rm \
   -v /dev:/dev:rw \
   -v /sys:/sys:ro \
   --device-cgroup-rule='c 166:* rmw' \
+  --device=/dev/bus/usb \
   --device=/dev/dri \
   -w ${HOME} \
   vivado:2025.1

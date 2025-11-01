@@ -32,6 +32,9 @@ on the `run.sh` script
 and noting down the number that appears by the side of the group that the device belongs
 - Example for the `ttyACM0`: `crw-rw----+ 1 root plugdev 166, 0 jul 24 22:32  /dev/ttyACM0`
 - Then the docker command is `--device-cgroup-rule='c 166:* rmw'`
+- Other example for the `ttyUSB0`: `crw-rw----+ 1 root dialout 188, 0 jul 24 22:32 /dev/ttyUSB0`
+- Then the docker command for this other example becomes `--deice-cgroup-rule='c 188:* rmw'` 
+- Note that for hardware access to work, it is necessary that the host has the correct udev rules (or drivers, depending on the hardware) configured on the HOST. For Vivado, for instance, the udev rules from /etc/udev/rules.d from the Docker need to be copied to the equivalent folder on the host.
 
 ## Ubuntu 24.04 fixes
 
@@ -43,3 +46,4 @@ I am adding this list here as it might help other users, even if not using this 
   [`a post on Xilinx forum`](https://adaptivesupport.amd.com/s/question/0D54U000091FX0XSAW/vitis-no-longer-opening-ubuntu-2404-vitis-20242?language=en_US)
 - XSDB crashes upon being launched from Vitis - Wrond rlwrap package version 
   bundled - Fix discussed in [`another post on Xilinx forum`](https://adaptivesupport.amd.com/s/question/0D54U00006alPtOSAU/segmentation-fault-invoking-xsct-indirectly-using-the-xsct-script-in-vitis-bin-folder-resolved?language=en_US)
+- Petalinux DOES NOT WORK if two options are selected. It will fail with the error "Unknown option microblaze_full" or sonething similar. Either select only one architecture or all of them.
