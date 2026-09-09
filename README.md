@@ -32,7 +32,10 @@ on the `run.sh` script
 and noting down the number that appears by the side of the group that the device belongs
 - Example for the `ttyACM0`: `crw-rw----+ 1 root plugdev 166, 0 jul 24 22:32  /dev/ttyACM0`
 - Then the docker command is `--device-cgroup-rule='c 166:* rmw'`
-- Every time a new device is connected, the docker needs to be restarted to see the device
+- Other example for the `ttyUSB0`: `crw-rw----+ 1 root dialout 188, 0 jul 24 22:32 /dev/ttyUSB0`
+- Then the docker command for this other example becomes `--device-cgroup-rule='c 188:* rmw'` 
+- Note that for hardware access to work, it is necessary that the host has the correct udev rules (or drivers, depending on the hardware) configured on the HOST. For Vivado, for instance, the udev rules from /etc/udev/rules.d from the Docker need to be copied to the equivalent folder on the host.
+- IMPORTANT: Every time a new device is connected, the docker needs to be restarted to see the device
 
 ## Ubuntu 24.04 fixes
 
