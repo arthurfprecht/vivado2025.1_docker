@@ -31,7 +31,7 @@ RUN apt-get install -y -qq \
 	wget
 
 # Required libtinfo5 as AR 76616, found at https://adaptivesupport.amd.com/s/article/76616?language=en_US
-RUN wget http://security.ubuntu.com/ubuntu/pool/universe/n/ncurses/libtinfo5_6.3-2ubuntu0.1_amd64.deb && \
+RUN wget https://security.ubuntu.com/ubuntu/pool/universe/n/ncurses/libtinfo5_6.2-0ubuntu2.1_amd64.deb && \
 	sudo apt install ./libtinfo5_6.3-2ubuntu0.1_amd64.deb
 
 # Requirements for Vitis
